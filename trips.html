@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photography Trips</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Cinzel:wght@600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= BASE ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background:#0f0f0f;
+  color:#ccc;
+  overflow-x:hidden;
+  line-height:1.8;
+
+  opacity:0;
+  transition:0.6s ease-in-out;
+}
+
+body.fade-in{
+  opacity:1;
+}
+
+/* ================= HEADER ================= */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:18px 50px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,0.85);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+
+/* LOGO */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* BLINKING EYE */
+.eye{
+  font-size:22px;
+  color:#f5c542;
+  text-shadow:0 0 10px rgba(245,197,66,0.8);
+  animation:blinkEye 3.5s infinite;
+  display:inline-block;
+}
+
+/* blink animation */
+@keyframes blinkEye{
+  0%, 92%, 100%{
+    transform:scaleY(1);
+  }
+  94%, 96%{
+    transform:scaleY(0.1);
+  }
+}
+
+/* BRAND */
+.brand{
+  font-family:'Cinzel', serif;
+  font-size:18px;
+  letter-spacing:3px;
+
+  background:linear-gradient(90deg,#f5c542,#fff2b0);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* NAV */
+nav a{
+  margin-left:25px;
+  text-decoration:none;
+  font-family:'Cinzel', serif;
+  font-size:14px;
+  letter-spacing:2px;
+  color:#ddd;
+  transition:0.3s;
+  position:relative;
+  text-transform:uppercase;
+}
+
+nav a:hover{
+  color:#f5c542;
+  text-shadow:0 0 8px rgba(245,197,66,0.7);
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0%;
+  height:2px;
+  background:linear-gradient(90deg,#f5c542,#fff2b0);
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* ================= TITLE ================= */
+.title{
+  text-align:center;
+  margin:140px 0 40px;
+  font-size:40px;
+  font-family:'Playfair Display', serif;
+
+  background:linear-gradient(90deg,#f5c542,#fff2b0);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  animation:glow 2.5s infinite alternate;
+}
+
+@keyframes glow{
+  from{
+    filter:drop-shadow(0 0 5px gold);
+  }
+  to{
+    filter:drop-shadow(0 0 20px gold);
+  }
+}
+
+/* ================= TRIPS GRID ================= */
+.trips{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+  padding:0 60px 60px;
+}
+
+.trip{
+  background:#1a1a1a;
+  border-radius:12px;
+  overflow:hidden;
+  transition:0.4s;
+}
+
+.trip:hover{
+  transform:translateY(-10px) scale(1.02);
+}
+
+.trip img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+
+.trip-content{
+  padding:20px;
+}
+
+.trip h4{
+  color:#f5c542;
+  margin-bottom:10px;
+  font-family:'Cinzel', serif;
+}
+
+.trip p{
+  font-size:14px;
+  color:#aaa;
+  margin-bottom:15px;
+}
+
+.trip button{
+  padding:10px 15px;
+  border:none;
+  background:#c9a24d;
+  cursor:pointer;
+  border-radius:5px;
+  transition:0.3s;
+}
+
+.trip button:hover{
+  background:#f5c542;
+  color:#111;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:20px;
+  background:black;
+  color:#777;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width:768px){
+
+  header{
+    padding:15px 20px;
+  }
+
+  .title{
+    font-size:28px;
+  }
+
+  .trips{
+    padding:0 20px 40px;
+  }
+
+  nav a{
+    margin-left:12px;
+    font-size:12px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <span class="eye">👁</span>
+    <span class="brand">PORTFOLIO</span>
+  </div>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="about.html">About</a>
+  <a href="trips.html">Trips</a>
+  <a href="contact.html">Contact</a>
+
+  <a href="login.html" id="loginLink">Login</a>
+  <a href="#" id="logoutLink" onclick="logout()" style="display:none;">Logout</a>
+</nav>
+</header>
+
+<h2 class="title">EXPLORE WITH ME</h2>
+
+<div class="trips">
+<div class="trip"> <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200"> <div class="trip-content"> <h4>Tropical Beaches</h4> <p>Golden sunsets, turquoise water, and perfect coastal photography moments.</p> <button>Book Now</button> </div> </div> 
+<div class="trip"> <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200"> 
+<div class="trip-content"> <h4>Forest Escape</h4> <p>Misty forests, hidden trails, and cinematic storytelling in nature.</p> <button>Book Now</button> </div> </div> 
+<div class="trip"> <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200"> <div class="trip-content"> <h4>Lake Reflections</h4> <p>Mirror-like waters and peaceful landscapes perfect for artistic shots.</p> <button>Book Now</button> </div> </div> 
+<div class="trip"> <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200"> 
+<div class="trip-content"> <h4>Mountain Forest Trails</h4> <p>Deep greens, dramatic fog, and adventurous trekking photography.</p> <button>Book Now</button> </div> </div> <div class="trip"> <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?w=1200"> <div class="trip-content"> <h4>Rocky Shores</h4> <p>Powerful waves, cliffs, and cinematic coastal storytelling.</p> <button>Book Now</button> </div> </div>
+</div>
+
+<footer>© 2026 Reddy Photography ALL RIGHTS RESERVED</footer>
+
+<script>
+const isLoggedIn = localStorage.getItem("userLoggedIn") === "true";
+
+const loginLink = document.getElementById("loginLink");
+const logoutLink = document.getElementById("logoutLink");
+
+if (isLoggedIn) {
+  loginLink.style.display = "none";
+  logoutLink.style.display = "inline";
+} else {
+  loginLink.style.display = "inline";
+  logoutLink.style.display = "none";
+}
+
+function logout(){
+  localStorage.clear();
+  alert("Logged out!");
+  window.location.href = "index.html";
+}
+
+window.onload = () => {
+  document.body.classList.add("fade-in");
+};
+</script>
+
+</body>
+</html>

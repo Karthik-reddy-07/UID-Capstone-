@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photography Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Cinzel:wght@600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ================= BLINKING EYE ================= */
+.eye{
+  font-size:20px;
+  margin-right:10px;
+  display:inline-block;
+  animation:blink 3.5s infinite;
+  transform-origin:center;
+}
+
+/* blink animation */
+@keyframes blink{
+  0%, 92%, 100% {
+    transform: scaleY(1);
+  }
+  94%, 96% {
+    transform: scaleY(0.1);
+  }
+}
+.eye{
+  color:#f5c542;
+  text-shadow:0 0 10px rgba(245,197,66,0.8);
+}
+/* ================= BASE ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background:#0f0f0f;
+  color:#ccc;
+  overflow-x:hidden;
+  line-height:1.8;
+
+  opacity:0;
+  transition:opacity 0.6s ease-in-out;
+}
+
+body.fade-in{
+  opacity:1;
+}
+
+/* ================= HEADER ================= */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:18px 50px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,0.85);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+
+.logo span{
+  font-family:'Cinzel', serif;
+  letter-spacing:3px;
+  font-size:18px;
+
+  background:linear-gradient(90deg,#f5c542,#fff2b0);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* NAV */
+nav a{
+  margin-left:25px;
+  text-decoration:none;
+  font-family:'Cinzel', serif;
+  font-size:14px;
+  letter-spacing:2px;
+  color:#ddd;
+  transition:0.3s;
+  position:relative;
+}
+
+nav a:hover{
+  color:#f5c542;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0%;
+  height:2px;
+  background:#f5c542;
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* ================= SECTION ================= */
+section{
+  padding-top:140px;
+  max-width:1200px;
+  margin:auto;
+}
+
+/* TITLE */
+.collection-title{
+  text-align:center;
+  font-family:'Playfair Display', serif;
+  font-size:42px;
+  margin-bottom:30px;
+
+  background:linear-gradient(90deg,#f5c542,#fff2b0);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  animation:glow 3s infinite alternate;
+}
+
+@keyframes glow{
+  from{filter:drop-shadow(0 0 5px gold);}
+  to{filter:drop-shadow(0 0 20px gold);}
+}
+
+/* ================= GALLERY ================= */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  padding:20px;
+}
+
+.gallery-item{
+  position:relative;
+  overflow:hidden;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.gallery img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:0.4s;
+}
+
+.gallery-item:hover img{
+  transform:scale(1.1);
+}
+
+/* TEXT */
+.gallery-text{
+  position:absolute;
+  bottom:10px;
+  left:10px;
+  font-size:14px;
+  background:rgba(0,0,0,0.5);
+  padding:5px 10px;
+  border-radius:4px;
+}
+
+/* ================= LIGHTBOX ================= */
+.lightbox{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+
+.lightbox img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:10px;
+}
+
+.lightbox.show{
+  display:flex;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:20px;
+  background:black;
+  color:#777;
+  margin-top:40px;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width:768px){
+
+  header{
+    padding:15px 20px;
+  }
+
+  nav a{
+    margin-left:12px;
+    font-size:12px;
+  }
+
+  .collection-title{
+    font-size:28px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+  <span class="eye">👁</span>
+  <span>PORTFOLIO</span>
+</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="about.html">About</a>
+    <a href="trips.html">Trips</a>
+    <a href="contact.html">Contact</a>
+  <a href="login.html" id="loginLink">Login</a>
+  <a href="#" id="logoutLink" onclick="logout()" style="display:none;">Logout</a>
+  </nav>
+</header>
+
+<section>
+
+<h1 class="collection-title">My Collection</h1>
+
+<div class="gallery"> 
+<div class="gallery-item landscape"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&auto=format&fit=crop"><div class="gallery-text">Mountain Lake</div></div> 
+<div class="gallery-item landscape"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&auto=format&fit=crop"><div class="gallery-text">Ocean Sunset</div></div> 
+<div class="gallery-item landscape"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&auto=format&fit=crop"><div class="gallery-text">Forest Hills</div></div> 
+<div class="gallery-item landscape"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&auto=format&fit=crop"><div class="gallery-text">Lake Bay</div></div> 
+<div class="gallery-item portrait"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&auto=format&fit=crop"><div class="gallery-text">Cloudy Mountains</div></div> 
+<div class="gallery-item portrait"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&auto=format&fit=crop"><div class="gallery-text">Autumn Path</div></div> 
+<div class="gallery-item portrait"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=800&auto=format&fit=crop"><div class="gallery-text">Snowy Peaks</div></div> 
+<div class="gallery-item portrait"><img src="https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?w=800&auto=format&fit=crop"><div class="gallery-text">Misty Forest</div></div> 
+<div class="gallery-item portrait"><img src="https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=800&auto=format&fit=crop"><div class="gallery-text">Lake Reflection</div></div> 
+<div class="gallery-item portrait"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&auto=format&fit=crop"><div class="gallery-text">Golden Meadow</div></div> 
+<div class="gallery-item landscape"><img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1200&auto=format&fit=crop"><div class="gallery-text">Canyon View</div></div> 
+<div class="gallery-item landscape"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?w=1200&auto=format&fit=crop"><div class="gallery-text">Rocky Shore</div></div> 
+<div class="gallery-item landscape"><img src="https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?w=1200&auto=format&fit=crop"><div class="gallery-text">Clouds</div></div> 
+<div class="gallery-item portrait"><img src="https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?w=800&auto=format&fit=crop"><div class="gallery-text">Indoor Deco</div></div> 
+<div class="gallery-item landscape"><img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=1200&auto=format&fit=crop"><div class="gallery-text">Cliff Edge</div></div> 
+<div class="gallery-item landscape"><img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?w=1200&auto=format&fit=crop"><div class="gallery-text">Sunny Plains</div></div> 
+<div class="gallery-item portrait"><img src="https://images.unsplash.com/photo-1494783367193-149034c05e8f?w=800&auto=format&fit=crop"><div class="gallery-text">Mountain Stream</div></div> 
+<div class="gallery-item landscape"><img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1200&auto=format&fit=crop"><div class="gallery-text">Coastal Cliffs</div></div> </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <img id="lightbox-img">
+</div>
+
+<footer>© 2026 Reddy Photography</footer>
+
+<script>
+
+window.onload=()=>document.body.classList.add("fade-in");
+
+/* LIGHTBOX */
+const lightbox=document.getElementById("lightbox");
+const lightImg=document.getElementById("lightbox-img");
+
+document.querySelectorAll(".gallery img").forEach(img=>{
+  img.onclick=()=>{
+    lightbox.classList.add("show");
+    lightImg.src=img.src;
+  };
+});
+
+lightbox.onclick=()=>lightbox.classList.remove("show");
+
+</script>
+<script>
+const isLoggedIn = localStorage.getItem("userLoggedIn") === "true";
+
+const loginLink = document.getElementById("loginLink");
+const logoutLink = document.getElementById("logoutLink");
+
+if (isLoggedIn) {
+  loginLink.style.display = "none";
+  logoutLink.style.display = "inline";
+} else {
+  loginLink.style.display = "inline";
+  logoutLink.style.display = "none";
+}
+
+function logout() {
+  localStorage.clear();
+  alert("Logged out!");
+  window.location.href = "index.html";
+}
+</script>
+
+
+</body>
+</html>

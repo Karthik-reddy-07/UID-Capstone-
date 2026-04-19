@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Cinzel:wght@600&family=Playfair+Display:wght@600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= PAGE FADE EFFECT ================= */
+body {
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+  background:#0f0f0f;
+  color:#ccc;
+  overflow-x:hidden;
+  line-height:1.8;
+  font-family:'Poppins', sans-serif;
+}
+
+body.fade-in {
+  opacity: 1;
+}
+
+body.fade-out {
+  opacity: 0;
+  filter: blur(5px);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ================= BASE RESET ================= */
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* ================= HEADER ================= */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:18px 50px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,0.85);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo img{
+  width:38px;
+  filter:invert(1);
+}
+
+.logo span{
+  font-family:'Cinzel', serif;
+  font-weight:600;
+  letter-spacing:3px;
+  font-size:18px;
+  background:linear-gradient(90deg,#f5c542,#fff2b0);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ================= NAV ================= */
+nav a{
+  margin-left:25px;
+  text-decoration:none;
+  font-family:'Cinzel', serif;
+  font-size:14px;
+  letter-spacing:2px;
+  color:#ddd;
+  position:relative;
+  transition:0.3s;
+  text-transform:uppercase;
+}
+
+nav a:hover{
+  color:#f5c542;
+  text-shadow:0 0 8px rgba(245,197,66,0.7);
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0%;
+  height:2px;
+  background:linear-gradient(90deg,#f5c542,#fff2b0);
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* ================= SECTION ================= */
+section{
+  max-width:1100px;
+  margin:140px auto 60px;
+  padding:0 20px;
+}
+
+section h3{
+  text-align:center;
+  font-family:'Playfair Display', serif;
+  font-size:38px;
+  margin-bottom:20px;
+
+  background:linear-gradient(90deg,#f5c542,#fff2b0);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  text-shadow:0 0 15px rgba(245,197,66,0.4);
+}
+
+/* CINEMATIC GLOW FIXED */
+.cinematic-glow{
+  animation:glow 2.5s infinite alternate;
+}
+
+@keyframes glow{
+  from{
+    text-shadow:0 0 10px rgba(245,197,66,0.5);
+  }
+  to{
+    text-shadow:0 0 30px rgba(245,197,66,1);
+  }
+}
+
+/* ================= ABOUT TEXT ================= */
+.about{
+  text-align:center;
+  font-size:16px;
+  color:#ccc;
+  margin-bottom:60px;
+}
+
+/* ================= GEAR GRID ================= */
+.gear{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+}
+
+.gear-item{
+  background:#1a1a1a;
+  border-radius:10px;
+  overflow:hidden;
+  text-align:center;
+  padding-bottom:15px;
+  transition:0.4s;
+}
+
+.gear-item:hover{
+  transform:translateY(-8px);
+}
+
+.gear-item img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+
+.gear-item h4{
+  margin-top:10px;
+  color:#f5c542;
+  font-family:'Cinzel', serif;
+}
+
+.gear-item p{
+  font-size:14px;
+  color:#aaa;
+  padding:0 10px;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:20px;
+  background:black;
+  color:#777;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+@media (max-width:768px){
+
+  header{
+    padding:15px 20px;
+  }
+
+  .logo span{
+    font-size:14px;
+  }
+
+  nav{
+    display:flex;
+    overflow-x:auto;
+  }
+
+  nav a{
+    margin-left:15px;
+    font-size:12px;
+    white-space:nowrap;
+  }
+
+  section{
+    margin:100px auto 40px;
+  }
+
+  section h3{
+    font-size:26px;
+  }
+
+  .about{
+    font-size:14px;
+  }
+
+  .gear{
+    grid-template-columns:1fr;
+  }
+
+  .gear-item img{
+    height:180px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo">
+    <span class="eye">👁</span>
+    <span class="brand">PORTFOLIO</span>
+  </div>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="about.html">About</a>
+  <a href="trips.html">Trips</a>
+  <a href="contact.html">Contact</a>
+
+  <a href="login.html" id="loginLink">Login</a>
+  <a href="#" id="logoutLink" onclick="logout()" style="display:none;">Logout</a>
+</nav>
+</header>
+
+<section>
+  <h3 class="cinematic-glow">About Me</h3>
+
+  <p class="about">
+    I am a passionate cinematographer and photographer dedicated to capturing stories
+    through cinematic visuals and stunning photography. My goal is to transform moments into
+    timeless experiences that speak to emotions, creativity, and artistry.
+  </p>
+
+  <div class="gear">
+    <div class="gear-item">
+      <img src="https://t3.ftcdn.net/jpg/12/94/59/34/360_F_1294593462_kU5M77nhAU2w7tvo7lrUXPbqQkwy5zx2.jpg">
+      <h4>Sony M4</h4>
+      <p>Full-frame mirrorless camera ideal for cinematic video and low-light photography.</p>
+    </div>
+
+    <div class="gear-item">
+      <img src="https://images.pexels.com/photos/19969445/pexels-photo-19969445.jpeg">
+      <h4>Sony M3</h4>
+      <p>High-performance camera offering sharp stills and excellent video quality.</p>
+    </div>
+
+    <div class="gear-item">
+      <img src="https://i.ytimg.com/vi/hDo9RfFkkic/sddefault.jpg">
+      <h4>iPhone + Gimbal</h4>
+      <p>Professional mobile filmmaking setup using iPhone paired with a 3-axis gimbal stabilizer for ultra-smooth cinematic shots.</p>
+    </div>
+
+    <div class="gear-item">
+      <img src="https://www.redsharknews.com/hubfs/DJI%20%20Osmo%20Pocket%203%20Magnetic%20ND%20Filters.jpg">
+      <h4>Osmo Pocket</h4>
+      <p>Compact gimbal camera for smooth cinematic movement and creative motion footage.</p>
+    </div>
+
+    <div class="gear-item">
+      <img src="https://images.pexels.com/photos/442587/pexels-photo-442587.jpeg">
+      <h4>DJI Drone</h4>
+      <p>Aerial drone used to capture breathtaking cinematic views from above.</p>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Reddy Photography ALL RIGHTS RESERVED</footer>
+
+<script>
+window.addEventListener("load", () => {
+  document.body.classList.add("fade-in");
+});
+
+document.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", function(e) {
+    const href = this.getAttribute("href");
+
+    if (href && !href.startsWith("#")) {
+      e.preventDefault();
+      document.body.classList.add("fade-out");
+
+      setTimeout(() => {
+        window.location.href = href;
+      }, 500);
+    }
+  });
+});
+
+const isLoggedIn = localStorage.getItem("userLoggedIn") === "true";
+
+const loginLink = document.getElementById("loginLink");
+const logoutLink = document.getElementById("logoutLink");
+
+if (isLoggedIn) {
+  loginLink.style.display = "none";
+  logoutLink.style.display = "inline";
+} else {
+  loginLink.style.display = "inline";
+  logoutLink.style.display = "none";
+}
+
+function logout() {
+  localStorage.clear();
+  alert("Logged out!");
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>	

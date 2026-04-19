@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Photography Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Cinzel:wght@600&display=swap" rel="stylesheet">
+
+<style>
+.eye-logo{
+  font-size:38px;
+  margin-bottom:10px;
+  color:#f5c542;
+  text-align:center;
+  animation:blink 3.5s infinite;
+  text-shadow:0 0 15px rgba(245,197,66,0.8);
+  display:block;
+}
+
+/* blinking animation */
+@keyframes blink{
+  0%, 92%, 100%{
+    transform:scaleY(1);
+  }
+  94%, 96%{
+    transform:scaleY(0.1);
+  }
+}
+.eye-logo{
+  animation:blink 3.5s infinite, glowEye 2s infinite alternate;
+}
+
+@keyframes glowEye{
+  from{ text-shadow:0 0 10px rgba(245,197,66,0.4); }
+  to{ text-shadow:0 0 25px rgba(245,197,66,1); }
+}
+
+/* ================= BASE ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Playfair Display', serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: url('https://images.unsplash.com/photo-1581591524425-c7e0978865fc?q=80&w=1170&auto=format&fit=crop')
+              center/cover no-repeat;
+
+  overflow: hidden;
+  opacity: 0;
+  transition: 0.7s ease-in-out;
+}
+
+/* fade in */
+body.loaded {
+  opacity: 1;
+}
+
+/* fade out */
+body.fade-out {
+  opacity: 0;
+  filter: blur(6px);
+}
+
+/* dark overlay */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 0;
+}
+
+/* ================= LOGIN BOX ================= */
+.login-box {
+  position: relative;
+  z-index: 1;
+
+  width: 340px;
+  padding: 40px;
+
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(245,197,66,0.4);
+  border-radius: 12px;
+
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 25px rgba(245,197,66,0.25);
+
+  text-align: center;
+}
+
+/* TITLE */
+.login-box h2 {
+  color: #f5c542;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px rgba(245,197,66,0.4);
+}
+
+/* INPUT */
+.login-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+
+  border: none;
+  outline: none;
+
+  background: rgba(255,255,255,0.08);
+  color: white;
+
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+
+  transition: 0.3s;
+}
+
+.login-box input:focus {
+  border-color: #f5c542;
+  box-shadow: 0 0 10px rgba(245,197,66,0.4);
+}
+
+/* BUTTON */
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+
+  background: linear-gradient(90deg, #f5c542, #fff2b0);
+  border: none;
+  border-radius: 6px;
+
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 1px;
+
+  transition: 0.3s;
+}
+
+.login-box button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(245,197,66,0.6);
+}
+
+/* SMALL TEXT */
+.login-box p {
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 10px;
+}
+
+/* ERROR MESSAGE */
+.error {
+  color: red;
+  font-size: 13px;
+  margin-top: 8px;
+  display: none;
+}
+
+/* ================= FOOTER ================= */
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 15px;
+  color: #777;
+  background: rgba(0,0,0,0.8);
+  z-index: 1;
+}
+
+</style>
+</head>
+
+<body> 
+<div class="login-box">
+ <div class="eye-logo">👁</div>
+<h2>PORTFOLIO LOGIN</h2>
+
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+
+  <button onclick="login()">Enter</button>
+
+  <div id="errorMsg" class="error">Invalid username or password</div>
+
+  <p>Enter to explore cinematic photography world</p>
+</div>
+
+<footer>
+  © 2026 Reddy Photography ALL RIGHTS RESERVED
+</footer>
+
+<script>
+
+/* ================= FADE IN ================= */
+window.addEventListener("load", () => {
+  document.body.classList.add("loaded");
+});
+
+/* ================= LOGIN ================= */
+function login() {
+  const user = document.getElementById("username").value;
+  const pass = document.getElementById("password").value;
+  const error = document.getElementById("errorMsg");
+
+  if (user === "admin" && pass === "1234@abcde") {
+    localStorage.setItem("loggedIn", "true");
+
+    document.body.classList.add("fade-out");
+
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 700);
+
+  } else {
+    error.style.display = "block";
+  }
+}
+
+</script>
+
+</body>
+</html>
